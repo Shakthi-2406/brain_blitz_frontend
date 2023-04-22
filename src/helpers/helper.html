@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        var socket = new SockJS('http://localhost:8080/websocket');
+        var stompClient = Stomp.over(socket);
+
+        function Connect() {
+            var socket = new SockJS('http://localhost:8080/websocket');
+            var stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);            
+            var username = document.getElementById("username").value;
+            stompClient.subscribe('/all/messages', function(message) {
+                document.getElementById("messages").innerText += "\n" + message.body;
+                console.log('Received message: ' + message.body);
+            });
+            stompClient.subscribe(`/specific/${username}`, function(message) {
+                document.getElementById("messages").innerText += "\n" + message.body;
+                console.log('Received message: ' + message.body);
+            });
+          });
+        }
+
+        function sendToAll() {
+            var message = document.getElementById("message").value;
+            stompClient.send('/app/all', {}, message);
+        }
+        
+        function sendToSpecific() {
+            var message = document.getElementById("message").value;
+            var username = document.getElementById("toUser").value;
+            stompClient.send(`/app/specific/${username}`, {}, message);
+        }
+        
+        </script>
+</head>
+<body>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="Connect()">Connect</button>
+    <br><hr>
+    <input type="text" id="message" placeholder="Enter message">
+    <button onclick="sendToAll()">Send To All</button>
+    <br>
+    <br>
+    <input type="text" id="toUser" placeholder="Enter username to whom u want to send">
+    <button onclick="sendToSpecific()">Send to user</button>
+    <p id="messages"></p>
+</body>
+</html>
