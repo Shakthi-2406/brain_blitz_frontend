@@ -1,14 +1,62 @@
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+
+let stompClient;
+
+export function connect(username, onMessageReceived) {
+    const socket = new SockJS('http://localhost:8080/websocket');
+    stompClient = Stomp.over(socket);
+  
+    stompClient.connect({}, function(frame) {
+      console.log('Connected: ' + frame);
+      
+      stompClient.subscribe('/all/messages', function(message) {
+        console.log(message.body);
+        onMessageReceived(JSON.parse(message.body));
+      });
+
+      stompClient.subscribe(`/specific/${username}`, function(message) {
+        onMessageReceived(message.body);
+      });
+
+      stompClient.subscribe(`/specific/${username}`, function(message) {
+        onMessageReceived(message.body);
+      });
+
+      stompClient.subscribe(`/specific/${username}`, function(message) {
+        onMessageReceived(message.body);
+      });
+
+      stompClient.subscribe(`/specific/${username}`, function(message) {
+        onMessageReceived(message.body);
+      });
+    });
+  }
+
+export function sendToAll(message) {
+  stompClient.send('/app/all', {}, message);
+}
+
+export function sendToSpecific(message, username) {
+  stompClient.send(`/app/specific/${username}`, {}, message);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { connect, sendToAll, sendToSpecific } from '../js/webSocket';
 
-const Chat = (props) => {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const userName = state?.userName;
-   
-  if(userName === null) navigate('/login', {replace : true});
-
+function Chat(props) {
   const [message, setMessage] = useState('');
   const [username, setUsername] = useState('');
   const [Tousername, setToUsername] = useState('');
