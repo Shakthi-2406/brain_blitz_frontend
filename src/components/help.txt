@@ -1,0 +1,64 @@
+<div ref={startPageRef} style={{ display: "none" }}>
+    <div className="container-xxl py-5">
+        <div className="container">
+            <div className="text-center wow fadeInUp" data-wow-delay="0.1s"
+                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <h6 className="section-title text-center text-primary text-uppercase">
+                    Our Breeds
+                </h6>
+                <br />
+                <h1 className="mb-5">
+                    Explore Our
+                    <span className="text-primary text-uppercase">Varieties</span>
+                </h1>
+                <br />
+            </div>
+            <div className="row g-4" id="target">
+                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
+                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+
+                    <a className="service-item rounded" href="">
+
+                        <div className="service-icon bg-transparent border rounded p-1">
+                            <div
+                                className="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i className="fa fa-dog fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h6 className="mb-3 text-muted">Count - 21</h6>
+                        <h5 className="mb-3">Blonde Labrador</h5>
+                        <h6 className="mb-3">
+                            Dog - <i className="fa fa-dollar-sign text-primary"></i> 1200
+                        </h6>
+                        <p className="text-body mb-0">
+                            It is very cute dog which will help in reducing depression
+                            and also will protect the home
+                        </p>
+                    </a>
+                </div>
+                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s"
+                    style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+
+                    <a className="service-item rounded" href="">
+
+                        <div className="service-icon bg-transparent border rounded p-1">
+                            <div
+                                className="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                <i className="fa fa-dog fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h6 className="mb-3 text-muted">Count - 5</h6>
+                        <h5 className="mb-3">Golden Retriever</h5>
+                        <h6 className="mb-3">
+                            Dog - <i className="fa fa-dollar-sign text-primary"></i> 2700
+                        </h6>
+                        <p className="text-body mb-0">
+                            It is very cute dog which will help in reducing depression
+                            and also will protect the home
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

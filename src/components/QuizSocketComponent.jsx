@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 
-const WebSocketComponent = ({ userName, onMessageReceived, onGameBegan, onGameJoined }) => {
+const QuizSocketComponent = ({ userName, onGameResult ,onGameBuzzered}) => {
   const alreadyConnectedRef = useRef(false);
 
   useEffect(() => {
@@ -15,20 +15,16 @@ const WebSocketComponent = ({ userName, onMessageReceived, onGameBegan, onGameJo
       stompClient.connect({}, function(frame) {
         console.log('Connected: ' + frame);
 
-        stompClient.subscribe('/all/messages', function(message) {
-          console.log(message.body);
-          onMessageReceived(JSON.parse(message.body));
-        });
 
         // joined result buzzered began
-        stompClient.subscribe(`/func/joined/${userName}`, function(message) {
-          onGameJoined(JSON.parse(message.body));
+        stompClient.subscribe(`/func/result/${userName}`, function(message) {
           console.log(message.body);
+          onGameResult(JSON.parse(message.body));
         });
 
-        stompClient.subscribe(`/func/began/${userName}`, function(message) {
+        stompClient.subscribe(`/func/buzzered/${userName}`, function(message) {
           console.log(message.body);
-          onGameBegan(JSON.parse(message.body));
+          onGameBuzzered(JSON.parse(message.body));
         });
       });
     };
@@ -39,4 +35,4 @@ const WebSocketComponent = ({ userName, onMessageReceived, onGameBegan, onGameJo
   return null;
 };
 
-export default WebSocketComponent;
+export default QuizSocketComponent;

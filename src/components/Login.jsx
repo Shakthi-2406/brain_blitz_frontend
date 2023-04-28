@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import about1 from '../img/about-1.jpg';
 import about2 from '../img/about-2.jpg';
 import about3 from '../img/about-3.jpg';
 import about4 from '../img/about-4.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const[userName, setUsername] = useState('');
+    const navigate = useNavigate();
+
+    const handleClick = () =>{
+        // login logic stays here
+        navigate('/home', {replace : true , state:{ userName: userName }})
+    }
+
     return(
         <div className="container-xxl py-5">
         <div className="container">
@@ -14,7 +24,6 @@ const Login = () => {
             <div className="row g-5">
                 <div className="col-lg-6">
                     <div className="wow fadeInUp" data-wow-delay="0.2s">
-                        <form action="postAdd.php" method="post" enctype="multipart/form-data">
                             <div className="row g-3">
                                 <div className="col-md-6">
                                     <div className="form-floating">
@@ -30,8 +39,8 @@ const Login = () => {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-floating">
-                                        <input type="text" className="form-control" name="breed" id="name" placeholder="Your Name"/>
-                                        <label for="name">Breed name</label>
+                                        <input type="text" className="form-control" value={userName} onChange={(e) => setUsername(e.target.value)} name="breed" id="name" placeholder="Your Name"/>
+                                        <label for="name">Username</label>
                                     </div>
                                 </div>
                                 <div className="col-md-12">
@@ -71,10 +80,9 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className="col-12">
-                                    <button className="btn btn-primary w-100 py-3" type="submit">Put it up for sale</button>
+                                    <button className="btn btn-primary w-100 py-3" onClick={handleClick}>Login</button>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
                 <div className="col-lg-6">
