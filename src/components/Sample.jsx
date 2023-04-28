@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
+import Carousel from '../img/carousel-1.jpg'
 
 const Sample = () =>{
 
     return (
         <>
-        <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div className="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        </div>
-
         <div className="container-fluid bg-dark px-0">
             <div className="row gx-0">
                 <div className="col-lg-3 bg-dark d-none d-lg-block">
@@ -43,7 +38,7 @@ const Sample = () =>{
         </div>
 
 
-        <div className="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-1.jpeg);">
+        <div className="container-fluid page-header mb-5 p-0" style={{backgroundImage: `url(${Carousel})`}}>
             <div className="container-fluid page-header-inner py-5">
                 <div className="container text-center pb-5">
                     <h1 className="display-3 text-white mb-3 animated slideInDown">Pets 🐶</h1>
@@ -60,7 +55,7 @@ const Sample = () =>{
 
         <div className="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
             <div className="container">
-                <div className="bg-white shadow" style="padding: 35px;">
+                <div className="bg-white shadow" style={{padding: 35 + 'px'}}>
                     <div className="row g-2">
                         <div className="col-md-10">
                             <div className="row g-2">

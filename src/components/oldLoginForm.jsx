@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const oldLoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMsg, setErrorMsg] = useState("");
@@ -63,4 +63,4 @@ const LoginForm = () => {
   );
 }
 
-export default LoginForm;
+export default oldLoginForm;
