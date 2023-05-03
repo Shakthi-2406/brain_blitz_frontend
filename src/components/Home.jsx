@@ -57,6 +57,7 @@ const Home = () => {
 
       <Header userName={userName} />
 
+        {/* user Details */}
         <div
           className="container-fluid page-header mb-5 p-0"
           style={{ backgroundImage: `url(${Carousel})` }}
@@ -80,6 +81,38 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {/* user Details */}
+
+        <br/>
+
+
+        <div className="container-xxl py-5">
+            <div className="container">
+                <div className="text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <h6 className="section-title text-center text-primary text-uppercase">
+                        Start competing
+                    </h6>
+                    <h1 className="mb-5">
+                        Explore Our <span className="text-primary text-uppercase">Streams</span>
+                    </h1>
+                </div>
+
+
+
+
+                <div className="row g-4" id="txtHint">
+                    <Category />
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
 
       {showNotification && (
         <Notification notification={quizRequest} userName={userName} />
@@ -143,6 +176,48 @@ const Notification = (props) => {
       </div>
     </>
   );
+};
+
+
+const Category = (props) => {
+  const [difficulty, setDifficulty] = useState('Easy');
+  const [count, setCount] = useState(10);
+  const [category, setCategory] = useState('Data Structures');
+    return(
+        <>
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div className="room-item shadow rounded overflow-hidden">
+                    <h2 className="text-center mx-auto my-auto mt-4 text-info border py-1">Computer Science</h2>
+                    <hr/>
+                    <div className="mt-3 w-75 text-center mx-auto">
+                        <select className="form-select">
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Automata Theory">Automata Theory</option>
+                        </select>
+                        <div className="mt-2 d-flex justify-content-between">
+                            <select className="form-select w-50" id="filterId">
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                                <option value="%">Shuffled</option>
+                            </select>
+                            <div className="mx-1"></div>
+                            <input type="number" className="form-control w-50" id="questionCount" placeholder="No. of questions" min={5} max={30}/>
+                        </div>
+                    </div>
+                    
+                    <div className="d-flex mx-5 mt-5 mb-5 justify-content-between">
+                        <a className="btn btn-sm btn-primary rounded py-2 px-4">
+                            Practise
+                        </a>
+                        <a className="btn btn-sm btn-dark rounded py-2 px-4">
+                            Compete online
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Home;

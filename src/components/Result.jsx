@@ -12,7 +12,6 @@ const Result = () => {
         navigate('/home', {replace : true , state:{ userName: userName }})
     }
 
-
     return (
         <>
             <div className="container-xxl py-5">
@@ -34,16 +33,14 @@ const Result = () => {
                         </div>
                        :
                       (message['winner'] === userName) ?
-                           <div className='mb-2'>
-                           <h1>{userName}
+                           <div className='mb-2 alert-success'>
+                           <h1>You
                            <span className="text-success text-uppercase"> Won!!✨</span> </h1>
-                           <h3 className='text-muted alert-success'>Keep it up!</h3>
                            </div>
                       : 
-                           <div className='mb-2'>
-                           <h1>{userName}
+                           <div className='mb-2 alert-danger'>
+                           <h1>You
                            <span className="text-danger text-uppercase"> Lost😓</span> </h1>
-                           <h3 className='text-muted alert-danger'>Better luck next time</h3>
                            </div>
                       }
                           
@@ -92,6 +89,8 @@ const Result = () => {
 }
 
 export default Result;
+
+
     // "player1RatingsNew"
     // "player2RatingsNew"
     // "player1Score"
