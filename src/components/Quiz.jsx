@@ -75,11 +75,12 @@ const Quiz = () => {
     setQuestionIndex(prevQuestionIndex => {
         const newIndex = prevQuestionIndex + 1;
         if (newIndex === questionsLength) {
-          getResult();
-          return;
+            getResult();
+            return prevQuestionIndex; 
         }
         return newIndex;
     });
+    
 
     setTimeLeft(TimeForEachQuestion);
   }
@@ -140,7 +141,15 @@ const Quiz = () => {
                 <div className="rounded shadow">
                     <div className="text-center p-4 mt-3">
 
-                        {showBuzzerMsg && <p className="py-2 alert-danger">{(buzzerMsg['msg']['by']===buzzerMsg['msg']['userName']) ? "You" : buzzerMsg['msg']['by']} got it <b>{buzzerMsg['msg']['correct']}</b> for <b>{buzzerMsg['msg']['score']}</b> points at {buzzerMsg['msg']['at']}!!</p>}
+                        {showBuzzerMsg && 
+                            <p className={(
+                                (buzzerMsg['msg']['by'] === userName && buzzerMsg['msg']['correct']==="correct") 
+                                || 
+                                (buzzerMsg['msg']['by'] != userName && buzzerMsg['msg']['correct']==="incorrect") 
+                            ) ? "py-2 alert-success" : "py-2 alert-danger"}>
+                                {(buzzerMsg['msg']['by']===buzzerMsg['msg']['userName']) ? "You" : buzzerMsg['msg']['by']} got it <b>{buzzerMsg['msg']['correct']}</b> for <b>{buzzerMsg['msg']['score']}</b> points at {buzzerMsg['msg']['at']}!!
+                            </p>
+                        }
 
                         <div className="d-flex justify-content-around  wow fadeInUp" data-wow-delay="0.1s">
                             <h6 className="fw-bold flex-grow-1 alert-success mx-3 px-3 py-2 me">{(userName === player1['username']) ? "Your " : player1['username']} Score : {player1Score}</h6>

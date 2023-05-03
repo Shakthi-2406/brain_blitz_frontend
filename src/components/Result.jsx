@@ -1,8 +1,5 @@
 import React from 'react';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState , useEffect } from 'react';
-import QuizSocketComponent from './QuizSocketComponent';
 
 const Result = () => {
     const location = useLocation();
@@ -11,9 +8,15 @@ const Result = () => {
     const userName = message['userName'];
     const buzzer = message['buzzer'];
 
+    const toHome = () =>{
+        navigate('/home', {replace : true , state:{ userName: userName }})
+    }
+
+
     return (
         <>
             <div className="container-xxl py-5">
+                <button onClick={toHome}>Home</button>
               <div className="container">
                   <div className="text-center wow fadeInUp" data-wow-delay="0.1s"
                       style={{visibility: "visible", animationDelay: "0.2s", animationName: "fadeInUp"}}>
