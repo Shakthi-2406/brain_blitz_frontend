@@ -26,20 +26,20 @@ const Result = () => {
                       {buzzer['category']} (<span className='text-primary'>{buzzer['difficulty']}</span> level)
                       </h5>
                       <br />
-                      {(message['winner'] == 'draw') ?
+                      {(message['winner'] === 'draw') ?
                         <div className='mb-2'>
                         <h1>It's a 
                         <span className="text-primary text-uppercase"> Draw!!😯</span> </h1>
                         </div>
                        :
                       (message['winner'] === userName) ?
-                           <div className='mb-2 alert-success'>
-                           <h1>You
+                           <div className='mb-2'>
+                           <h1>{userName}
                            <span className="text-success text-uppercase"> Won!!✨</span> </h1>
                            </div>
                       : 
-                           <div className='mb-2 alert-danger'>
-                           <h1>You
+                           <div className='mb-2'>
+                           <h1>{userName}
                            <span className="text-danger text-uppercase"> Lost😓</span> </h1>
                            </div>
                       }
